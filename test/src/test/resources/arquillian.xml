@@ -10,8 +10,8 @@
       <property name="stopPort">-1</property>
       <property name="properties">
         # alias the RA to have a nicer name
-        openejb.connector.artemis-rar-1.0.0-SNAPSHOT.aliases = artemis
-        openejb.connector.artemis-rar-1.0.0-SNAPSHOT.skip-default = true
+        openejb.connector.artemis-rar-${project.version}.aliases = artemis
+        openejb.connector.artemis-rar-${project.version}.skip-default = true
 
         # deploy the RA
         ra = new://Deployments?jar=${project.parent.basedir}/artemis-rar/target/artemis-rar-${project.version}.rar
