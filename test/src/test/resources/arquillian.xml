@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="
+              http://jboss.org/schema/arquillian
+              http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+  <container qualifier="tomee" default="true">
+    <configuration>
+      <property name="httpPort">-1</property>
+      <property name="stopPort">-1</property>
+      <property name="properties">
+        # alias the RA to have a nicer name
+        openejb.connector.artemis-rar-1.0.0-SNAPSHOT.aliases = artemis
+        openejb.connector.artemis-rar-1.0.0-SNAPSHOT.skip-default = true
+
+        # deploy the RA
+        ra = new://Deployments?jar=${project.parent.basedir}/artemis-rar/target/artemis-rar-${project.version}.rar
+
+        # configure the cf
+        artemis-javax.jms.ConnectionFactory.BrokerURL = vm://0
+
+        # configure the queue
+        artemis-javax.jms.Queue.Address = the-queue
+      </property>
+    </configuration>
+  </container>
+</arquillian>
